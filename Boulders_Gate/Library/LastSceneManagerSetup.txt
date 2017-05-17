@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/James/Stone Masons.unity
+- path: Assets/Joey/JoeyScene.unity
   isLoaded: 1
   isActive: 1

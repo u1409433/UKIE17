@@ -24,6 +24,8 @@ public class JL_LevelManager : MonoBehaviour
     public bool BL_PoweredUP = false;
     public string ST_Powerup;
 
+    public float FL_MousePos;
+
     // Use this for initialization
     void Start()
     {
@@ -33,6 +35,8 @@ public class JL_LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        FL_MousePos = Input.mousePosition.y;
+
         InputCheck();
 
         MoveCannon();
@@ -52,8 +56,9 @@ public class JL_LevelManager : MonoBehaviour
                         Invoke("Fire", 0.5f);
                         break;
                     case "Big Shot":
-                        GameObject BigBall = (GameObject)Instantiate(PF_Boulder, GO_Cannon.transform.position + new Vector3(0, 2, 3), GO_Cannon.transform.rotation);
+                        GameObject BigBall = (GameObject)Instantiate(PF_Boulder, GO_Cannon.transform.position + new Vector3(0, 2, 3), GO_Cannon.transform.FindChild("Barrel").transform.rotation);
                         BigBall.transform.localScale = new Vector3(3,3,3);
+                        BigBall.GetComponent<Rigidbody>().AddForce(transform.up * 500);
                         break;
                     default:
                         break;
@@ -94,7 +99,7 @@ public class JL_LevelManager : MonoBehaviour
 
     public void Fire()
     {
-        Instantiate(PF_Boulder, GO_Cannon.transform.position + new Vector3(0, 2, 3), GO_Cannon.transform.rotation);
+        Instantiate(PF_Boulder, GO_Cannon.transform.position + new Vector3(0, 2, 3), GO_Cannon.transform.FindChild("Barrel").transform.rotation);
     }
 
     public void Blocksplosion(GameObject vHitBlock)
@@ -116,16 +121,31 @@ public class JL_LevelManager : MonoBehaviour
         if (BL_Ypos)
         {
             GO_Cannon.transform.Rotate(new Vector3(0, 0.5f, 0));
-            if (GO_Cannon.transform.rotation.eulerAngles.y > 25 && GO_Cannon.transform.rotation.eulerAngles.y < 30) BL_Ypos = false;
+            if (GO_Cannon.transform.rotation.eulerAngles.y > 35 && GO_Cannon.transform.rotation.eulerAngles.y < 40) BL_Ypos = false;
         }
         else
         {
             GO_Cannon.transform.Rotate(new Vector3(0, -0.5f, 0));
-            if (GO_Cannon.transform.rotation.eulerAngles.y > 330 && GO_Cannon.transform.rotation.eulerAngles.y < 335) BL_Ypos = true;
+            if (GO_Cannon.transform.rotation.eulerAngles.y > 320 && GO_Cannon.transform.rotation.eulerAngles.y < 325) BL_Ypos = true;
         }
 
         FL_YRot = GO_Cannon.transform.rotation.eulerAngles.y;
-        //GO_Cannon.transform.Rotate(0, FL_YRot, 0);
+
+
+        FL_ZRot = Input.GetAxis("Mouse Y") * Time.deltaTime * 50;
+        GO_Cannon.transform.FindChild("Barrel").transform.Rotate(-FL_ZRot, 0, 0);
+
+        if (GO_Cannon.transform.FindChild("Barrel").transform.localRotation.eulerAngles.y > 90)
+        {
+            GO_Cannon.transform.FindChild("Barrel").transform.Rotate(FL_ZRot, 0, 0);
+        }
+
+        if (GO_Cannon.transform.FindChild("Barrel").transform.localRotation.eulerAngles.x > 350 && GO_Cannon.transform.FindChild("Barrel").transform.localRotation.eulerAngles.x < 360)
+        {
+            GO_Cannon.transform.FindChild("Barrel").transform.Rotate(FL_ZRot, 0, 0);
+        }
+
+        FL_ZRot = GO_Cannon.transform.FindChild("Barrel").transform.rotation.eulerAngles.x;
     }
 
     private void UpdatePower()
