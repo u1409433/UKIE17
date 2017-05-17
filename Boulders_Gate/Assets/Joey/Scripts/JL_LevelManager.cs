@@ -52,6 +52,8 @@ public class JL_LevelManager : MonoBehaviour
 
         MoveCannon();
 
+        IN_BlocksLeft = 0;
+
         foreach (GameObject Structure in GameObject.FindGameObjectsWithTag("Building"))
         {
             if (Structure.GetComponent<JL_BuildingBehaviour>().IN_Bricks < Structure.GetComponent<JL_BuildingBehaviour>().IN_StartingBricks / 2)
@@ -59,6 +61,15 @@ public class JL_LevelManager : MonoBehaviour
                 IN_BuildingsLeft--;
                 Debug.Log("Building Destroyed");
             }
+            else
+            {
+                IN_BlocksLeft += Structure.GetComponent<JL_BuildingBehaviour>().IN_Bricks;
+            }
+        }
+
+        if (IN_BuildingsLeft <= 0)
+        {
+            Application.LoadLevel(1);
         }
     }
 
@@ -93,6 +104,11 @@ public class JL_LevelManager : MonoBehaviour
                 Invoke("Fire", 0);
                 FL_FiringTime = Time.time + FL_Cooldown;
                 FL_ShotsLeft--;
+
+                if (FL_ShotsLeft <= 0)
+                {
+                    Invoke("Loss",5);
+                }
             }
 
         }
@@ -186,5 +202,10 @@ public class JL_LevelManager : MonoBehaviour
     {
         int tIN = vStructure.transform.childCount;
         DI_Structures.Add(vStructure, tIN);
+    }
+
+    private void Loss()
+    {
+        Application.LoadLevel(2);
     }
 }
