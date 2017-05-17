@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/James/Trump Tower.unity
-=======
 - path: Assets/Joey/JoeyScene.unity
->>>>>>> origin/master
   isLoaded: 1
   isActive: 1
