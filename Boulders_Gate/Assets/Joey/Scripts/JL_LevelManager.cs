@@ -107,7 +107,7 @@ public class JL_LevelManager : MonoBehaviour
 
                 if (FL_ShotsLeft <= 0)
                 {
-                    Invoke("Loss",5);
+                    Invoke("Loss", 10);
                 }
             }
 
@@ -117,20 +117,6 @@ public class JL_LevelManager : MonoBehaviour
         {
             UpdatePower();
         }
-
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    Ray tRY_Ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //    RaycastHit tRH_Hit;
-
-        //    if (Physics.Raycast(tRY_Ray, out tRH_Hit, 100f))
-        //    {
-        //        if (tRH_Hit.transform.tag == "Block")
-        //        {
-        //            Blocksplosion(tRH_Hit.transform.gameObject);
-        //        }
-        //    }
-        //}
     }
 
     public void Fire()
