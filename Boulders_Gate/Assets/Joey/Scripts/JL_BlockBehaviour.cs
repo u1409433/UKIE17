@@ -38,8 +38,9 @@ public class JL_BlockBehaviour : MonoBehaviour
 
     public void DeleteCheck()
     {
-        if (transform.position == v3_CurrentPos)
+        if (Vector3.Distance(transform.position, v3_CurrentPos) < 0.5f)
         {
+            transform.GetComponentInParent<JL_BuildingBehaviour>().IN_Bricks--;
             Destroy(gameObject);
         }
         else
