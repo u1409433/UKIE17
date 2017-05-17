@@ -21,6 +21,9 @@ public class JL_LevelManager : MonoBehaviour
     public float FL_Cooldown;
     public float FL_ShotsLeft;
 
+    public bool BL_PoweredUP = false;
+    public string ST_Powerup;
+
     // Use this for initialization
     void Start()
     {
@@ -39,16 +42,40 @@ public class JL_LevelManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1) && Time.time >= FL_FiringTime && FL_ShotsLeft > 0)
         {
-            Instantiate(PF_Boulder, GO_Cannon.transform.position + new Vector3(0, 2, 3), GO_Cannon.transform.rotation);
-            FL_FiringTime += FL_Cooldown;
-            FL_ShotsLeft--;
+            if (BL_PoweredUP)
+            {
+                switch (ST_Powerup)
+                {
+                    case "Triple Shot":
+                        Invoke("Fire", 0.1f);
+                        Invoke("Fire", 0.3f);
+                        Invoke("Fire", 0.5f);
+                        break;
+                    case "Big Shot":
+                        GameObject BigBall = (GameObject)Instantiate(PF_Boulder, GO_Cannon.transform.position + new Vector3(0, 2, 3), GO_Cannon.transform.rotation);
+                        BigBall.transform.localScale = new Vector3(3,3,3);
+                        break;
+                    default:
+                        break;
+                }
+
+                FL_FiringTime += FL_Cooldown;
+                FL_ShotsLeft--;
+                BL_PoweredUP = false;
+            }
+            else
+            {
+                Invoke("Fire", 0);
+                FL_FiringTime += FL_Cooldown;
+                FL_ShotsLeft--;
+            }
+
         }
 
         if (Input.GetMouseButton(0))
         {
             UpdatePower();
         }
-
 
         //if (Input.GetMouseButtonDown(0))
         //{
@@ -63,6 +90,11 @@ public class JL_LevelManager : MonoBehaviour
         //        }
         //    }
         //}
+    }
+
+    public void Fire()
+    {
+        Instantiate(PF_Boulder, GO_Cannon.transform.position + new Vector3(0, 2, 3), GO_Cannon.transform.rotation);
     }
 
     public void Blocksplosion(GameObject vHitBlock)
