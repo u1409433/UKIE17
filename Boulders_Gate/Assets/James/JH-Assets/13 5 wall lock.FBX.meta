@@ -1,0 +1,223 @@
+fileFormatVersion: 2
+guid: 1fdfe15fa9b413447ac2dfb27a397f73
+timeCreated: 1495024270
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Brick
+    100004: Brick001
+    100006: Brick002
+    100008: Brick003
+    100010: Brick004
+    100012: Brick005
+    100014: Brick006
+    100016: Brick007
+    100018: Brick010
+    100020: Brick011
+    100022: Brick012
+    100024: Brick014
+    100026: Brick015
+    100028: Brick016
+    100030: Brick017
+    100032: Brick018
+    100034: Brick019
+    100036: Brick020
+    100038: Brick021
+    100040: Brick022
+    100042: Brick023
+    100044: Brick032
+    100046: Brick033
+    100048: Brick034
+    100050: Brick035
+    100052: Brick036
+    100054: Brick037
+    100056: Brick038
+    100058: Brick039
+    400000: //RootNode
+    400002: Brick
+    400004: Brick001
+    400006: Brick002
+    400008: Brick003
+    400010: Brick004
+    400012: Brick005
+    400014: Brick006
+    400016: Brick007
+    400018: Brick010
+    400020: Brick011
+    400022: Brick012
+    400024: Brick014
+    400026: Brick015
+    400028: Brick016
+    400030: Brick017
+    400032: Brick018
+    400034: Brick019
+    400036: Brick020
+    400038: Brick021
+    400040: Brick022
+    400042: Brick023
+    400044: Brick032
+    400046: Brick033
+    400048: Brick034
+    400050: Brick035
+    400052: Brick036
+    400054: Brick037
+    400056: Brick038
+    400058: Brick039
+    2300000: Brick
+    2300002: Brick001
+    2300004: Brick002
+    2300006: Brick003
+    2300008: Brick004
+    2300010: Brick005
+    2300012: Brick006
+    2300014: Brick007
+    2300016: Brick010
+    2300018: Brick011
+    2300020: Brick012
+    2300022: Brick014
+    2300024: Brick015
+    2300026: Brick016
+    2300028: Brick017
+    2300030: Brick018
+    2300032: Brick019
+    2300034: Brick020
+    2300036: Brick021
+    2300038: Brick022
+    2300040: Brick023
+    2300042: Brick032
+    2300044: Brick033
+    2300046: Brick034
+    2300048: Brick035
+    2300050: Brick036
+    2300052: Brick037
+    2300054: Brick038
+    2300056: Brick039
+    3300000: Brick
+    3300002: Brick001
+    3300004: Brick002
+    3300006: Brick003
+    3300008: Brick004
+    3300010: Brick005
+    3300012: Brick006
+    3300014: Brick007
+    3300016: Brick010
+    3300018: Brick011
+    3300020: Brick012
+    3300022: Brick014
+    3300024: Brick015
+    3300026: Brick016
+    3300028: Brick017
+    3300030: Brick018
+    3300032: Brick019
+    3300034: Brick020
+    3300036: Brick021
+    3300038: Brick022
+    3300040: Brick023
+    3300042: Brick032
+    3300044: Brick033
+    3300046: Brick034
+    3300048: Brick035
+    3300050: Brick036
+    3300052: Brick037
+    3300054: Brick038
+    3300056: Brick039
+    4300000: Brick
+    4300002: Brick001
+    4300004: Brick002
+    4300006: Brick003
+    4300008: Brick004
+    4300010: Brick005
+    4300012: Brick006
+    4300014: Brick007
+    4300016: Brick010
+    4300018: Brick011
+    4300020: Brick012
+    4300022: Brick014
+    4300024: Brick015
+    4300026: Brick016
+    4300028: Brick017
+    4300030: Brick018
+    4300032: Brick019
+    4300034: Brick020
+    4300036: Brick021
+    4300038: Brick022
+    4300040: Brick023
+    4300042: Brick032
+    4300044: Brick033
+    4300046: Brick034
+    4300048: Brick035
+    4300050: Brick036
+    4300052: Brick037
+    4300054: Brick038
+    4300056: Brick039
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
