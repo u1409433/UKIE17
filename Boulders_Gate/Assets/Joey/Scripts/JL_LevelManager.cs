@@ -15,6 +15,9 @@ public class JL_LevelManager : MonoBehaviour
     public float FL_ZRot;
     public bool BL_Zpos = true;
 
+    public float Ymin;
+    public float Ymax;
+
     public float FL_Power;
     public bool BL_PowerPos;
 
@@ -114,7 +117,6 @@ public class JL_LevelManager : MonoBehaviour
                     Invoke("Loss", 10);
                 }
             }
-
         }
 
         if (Input.GetMouseButton(0))
@@ -148,13 +150,13 @@ public class JL_LevelManager : MonoBehaviour
         {
             GO_Cannon.transform.Rotate(new Vector3(0, 0.25f, 0));
             if (BL_CamRotation) GO_Cam.transform.Rotate(new Vector3(0, 0.25f, 0));
-            if (GO_Cannon.transform.rotation.eulerAngles.y > 35 && GO_Cannon.transform.rotation.eulerAngles.y < 40) BL_Ypos = false;
+            if (GO_Cannon.transform.rotation.eulerAngles.y > Ymax && GO_Cannon.transform.rotation.eulerAngles.y < Ymax + 5) BL_Ypos = false;
         }
         else
         {
             GO_Cannon.transform.Rotate(new Vector3(0, -0.25f, 0));
             if (BL_CamRotation) GO_Cam.transform.Rotate(new Vector3(0, -0.25f, 0));
-            if (GO_Cannon.transform.rotation.eulerAngles.y > 320 && GO_Cannon.transform.rotation.eulerAngles.y < 325) BL_Ypos = true;
+            if (GO_Cannon.transform.rotation.eulerAngles.y > Ymin && GO_Cannon.transform.rotation.eulerAngles.y < Ymin - 5) BL_Ypos = true;
         }
 
         FL_YRot = GO_Cannon.transform.rotation.eulerAngles.y;
