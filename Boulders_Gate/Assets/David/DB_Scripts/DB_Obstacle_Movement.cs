@@ -127,9 +127,6 @@ public class DB_Obstacle_Movement : MonoBehaviour {
                  case "Bomber Plane":
                     SC_LevelManager.ST_Powerup = "Explosive Shot";
                     break;
-                 case "Zeppelin":
-                    SC_LevelManager.ST_Powerup = "Big Shot";
-                    break;
                  case "Chinook":
                     SC_LevelManager.ST_Powerup = "More Ammo";
                     break;
