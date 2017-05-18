@@ -9,6 +9,8 @@ public class JL_BlockBehaviour : MonoBehaviour
 
     public float FL_NextCheck;
 
+    public GameObject Explosion;
+
     // Use this for initialization
     void Start()
     {
@@ -55,7 +57,22 @@ public class JL_BlockBehaviour : MonoBehaviour
             {
                 GameObject.Find("AudioManager").GetComponent<JL_AudioManager>().Coin();
             }
-            Destroy(gameObject);
+
+            switch (gameObject.name)
+            {
+                case "Trump":
+                    Instantiate(Explosion, transform.position, transform.rotation);
+                    Destroy(gameObject);
+                    break;
+                case "Tan Tank":
+                    Instantiate(Explosion, transform.position, transform.rotation);
+                    Destroy(gameObject);
+                    break;
+                default:
+                    Destroy(gameObject);
+                    break;
+            }
+            
         }
         else
         {

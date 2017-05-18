@@ -5,9 +5,14 @@ using UnityEngine;
 public class JL_LevelManager : MonoBehaviour
 {
     public GameObject PF_Boulder;
+    public GameObject PF_Boulder_Predict;
 
     public GameObject GO_Cannon;
     public GameObject GO_Cam;
+    private float fl_FOV_start;
+    private float fl_FOV_current;
+    private float fl_Cam_lerp_progress;
+    private float fl_Cam_lerp_rate = 15;
 
     public float FL_YRot;
     public bool BL_Ypos = true;
@@ -15,10 +20,14 @@ public class JL_LevelManager : MonoBehaviour
     public float FL_ZRot;
     public bool BL_Zpos = true;
 
+    public float Ymin;
+    public float Ymax;
+
     public float FL_Power;
     public bool BL_PowerPos;
 
     public float FL_FiringTime;
+    public float FL_FiringTime_Predict;
     public float FL_Cooldown;
     public float FL_ShotsLeft;
 
@@ -37,7 +46,7 @@ public class JL_LevelManager : MonoBehaviour
     void Start()
     {
         DI_Structures = new Dictionary<GameObject, int>();
-
+        fl_FOV_start = Camera.main.fieldOfView;
         foreach (GameObject Structure in GameObject.FindGameObjectsWithTag("Building"))
         {
             CountBricks(Structure);
@@ -48,6 +57,7 @@ public class JL_LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+            Fire_Predict();
         FL_MousePos = Input.mousePosition.y;
 
         InputCheck();
@@ -81,6 +91,7 @@ public class JL_LevelManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1) && Time.time >= FL_FiringTime && FL_ShotsLeft > 0)
         {
+            StartCoroutine(Camera_Shake());
             if (BL_PoweredUP)
             {
                 switch (ST_Powerup)
@@ -114,7 +125,6 @@ public class JL_LevelManager : MonoBehaviour
                     Invoke("Loss", 10);
                 }
             }
-
         }
 
         if (Input.GetMouseButton(0))
@@ -126,6 +136,31 @@ public class JL_LevelManager : MonoBehaviour
     public void Fire()
     {
         Instantiate(PF_Boulder, GO_Cannon.transform.position + new Vector3(0, 2, 3), GO_Cannon.transform.FindChild("Barrel").transform.rotation);
+    }
+
+    void Fire_Predict()
+    {
+        FL_FiringTime_Predict = Time.time + 1;
+        Instantiate(PF_Boulder_Predict, GO_Cannon.transform.position + new Vector3(0, 2, 3), GO_Cannon.transform.FindChild("Barrel").transform.rotation);
+    }
+
+    IEnumerator Camera_Shake()
+    {
+        fl_Cam_lerp_progress = 0;
+        fl_FOV_current = fl_FOV_start;
+        while ((fl_FOV_start * 1.1f) > fl_FOV_current)
+        {
+            fl_Cam_lerp_progress += Time.deltaTime * fl_Cam_lerp_rate;
+            fl_FOV_current = Camera.main.fieldOfView = Mathf.LerpUnclamped(fl_FOV_start, (fl_FOV_start * 1.1f), fl_Cam_lerp_progress);
+            yield return null;
+        }
+        fl_Cam_lerp_progress = 0;
+        while (fl_FOV_current > fl_FOV_start)
+        {
+            fl_Cam_lerp_progress += Time.deltaTime * fl_Cam_lerp_rate;
+            fl_FOV_current = Camera.main.fieldOfView = Mathf.Lerp((fl_FOV_start * 1.1f), fl_FOV_start, fl_Cam_lerp_progress);
+            yield return null;
+        }
     }
 
     public void Blocksplosion(GameObject vHitBlock)
