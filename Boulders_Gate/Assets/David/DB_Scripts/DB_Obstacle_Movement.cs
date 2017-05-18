@@ -162,4 +162,31 @@ public class DB_Obstacle_Movement : MonoBehaviour {
 
     }//-----
     //------------------------------------------------------
+
+    //HOLDING CELL
+    //public void OnCollisionEnter(Collision vCollision)
+    //{
+    //    if (vCollision.transform.tag == "Boulder")
+    //    {
+    //        switch (gameObject.name)
+    //        {
+    //            case "Patroller":
+    //                SC_LevelManager.ST_Powerup = "Triple Shot";
+    //                break;
+    //            case "Drone":
+    //                SC_LevelManager.ST_Powerup = "Big Shot";
+    //                Invoke("SummonDrones", 0);
+    //                break;
+    //            default:
+    //                break;
+    //        }
+    //        SC_LevelManager.BL_PoweredUP = true;
+    //        Destroy(gameObject);
+    //    }
+
+    //    if (vCollision.transform.tag == "Block")
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 }//=====
