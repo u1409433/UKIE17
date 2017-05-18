@@ -38,7 +38,8 @@ public class JL_Patroller : MonoBehaviour
                     break;
                 case "Drone":
                     SC_LevelManager.ST_Powerup = "Big Shot";
-                    Invoke("SummonDrones", 0);
+                    GameObject.Find("DroneSpawner").GetComponent<DB_Drone_Spawner>().SummonDrones();
+                    GameObject.Find("DroneSpawner").GetComponent<DB_Drone_Spawner>().in_Drone_Count = 4;
                     break;
                 default:
                     break;
