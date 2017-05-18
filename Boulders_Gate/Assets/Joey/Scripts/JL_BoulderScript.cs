@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class JL_BoulderScript : MonoBehaviour
 {
+    public bool bl_prediction;
     Rigidbody RB;
     JL_LevelManager SC_LevelManager;
 
@@ -13,9 +14,10 @@ public class JL_BoulderScript : MonoBehaviour
         SC_LevelManager = GameObject.Find("LevelManager").GetComponent<JL_LevelManager>();
 
         RB = gameObject.GetComponent<Rigidbody>();
-
         RB.AddForce(transform.up * 600 * SC_LevelManager.FL_Power);
         RB.AddForce(-transform.forward * 75 * SC_LevelManager.FL_Power);
+        if (bl_prediction)
+            Destroy(gameObject, 0.2f);
     }
 
     // Update is called once per frame
@@ -28,7 +30,13 @@ public class JL_BoulderScript : MonoBehaviour
     {
         if (vCollided.transform.tag == "CollisionPlane")
         {
-            Invoke("Die", 3);
+            if (!bl_prediction)
+                Invoke("Die", 3);
+            else
+            {
+                transform.GetChild(0).parent = null;
+                Destroy(gameObject);
+            }
         }
     }
 
