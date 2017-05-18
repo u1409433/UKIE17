@@ -149,30 +149,30 @@ public class JL_LevelManager : MonoBehaviour
         if (BL_Ypos)
         {
             GO_Cannon.transform.Rotate(new Vector3(0, 0.25f, 0));
-            if (BL_CamRotation) GO_Cam.transform.Rotate(new Vector3(0, 0.25f, 0));
+            if (BL_CamRotation) GO_Cam.transform.Rotate(new Vector3(0, 0.1f, 0));
             if (GO_Cannon.transform.rotation.eulerAngles.y > Ymax && GO_Cannon.transform.rotation.eulerAngles.y < Ymax + 5) BL_Ypos = false;
         }
         else
         {
             GO_Cannon.transform.Rotate(new Vector3(0, -0.25f, 0));
-            if (BL_CamRotation) GO_Cam.transform.Rotate(new Vector3(0, -0.25f, 0));
-            if (GO_Cannon.transform.rotation.eulerAngles.y > Ymin && GO_Cannon.transform.rotation.eulerAngles.y < Ymin+ 5) BL_Ypos = true;
+            if (BL_CamRotation) GO_Cam.transform.Rotate(new Vector3(0, -0.1f, 0));
+            if (GO_Cannon.transform.rotation.eulerAngles.y > Ymin && GO_Cannon.transform.rotation.eulerAngles.y < Ymin + 5) BL_Ypos = true;
         }
 
         FL_YRot = GO_Cannon.transform.rotation.eulerAngles.y;
 
 
         FL_ZRot = Input.GetAxis("Mouse Y") * Time.deltaTime * 50;
-        GO_Cannon.transform.FindChild("Barrel").transform.Rotate(-FL_ZRot, 0, 0);
+        GO_Cannon.transform.FindChild("Barrel").transform.Rotate(0, 0, -FL_ZRot);
 
         if (GO_Cannon.transform.FindChild("Barrel").transform.localRotation.eulerAngles.y > 90)
         {
-            GO_Cannon.transform.FindChild("Barrel").transform.Rotate(FL_ZRot, 0, 0);
+            GO_Cannon.transform.FindChild("Barrel").transform.Rotate(0, 0, FL_ZRot);
         }
 
         if (GO_Cannon.transform.FindChild("Barrel").transform.localRotation.eulerAngles.x > 350 && GO_Cannon.transform.FindChild("Barrel").transform.localRotation.eulerAngles.x < 360)
         {
-            GO_Cannon.transform.FindChild("Barrel").transform.Rotate(FL_ZRot, 0, 0);
+            GO_Cannon.transform.FindChild("Barrel").transform.Rotate(0, 0, FL_ZRot);
         }
 
         FL_ZRot = GO_Cannon.transform.FindChild("Barrel").transform.rotation.eulerAngles.x;
