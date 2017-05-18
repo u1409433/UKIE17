@@ -10,8 +10,6 @@ public class DB_Obstacle_Movement : MonoBehaviour {
     private Vector3 V3_Right_Target;
     private Vector3 V3_Right_Turnpoint; //These are the points in the game world that the Obstacle will move towards (Target) and turn around at (turnpoint)
 
-    public string st_Boulder_Tag = "";
-
     private int in_Length_Count; //How many lengths the Obstacle has made (Only referred to, seeing it is unnecessary)
     public int in_Pattern_Length; //How many lengths in the Obstacle's movement pattern - Manually set
     public int in_Pattern_Delay_Time; //The number of seconds between each pattern run - Set to 0 for an infinite pattern
@@ -26,6 +24,8 @@ public class DB_Obstacle_Movement : MonoBehaviour {
     public float fl_LeftOutOfView_Turnpoint; //The Left point outside the Camera's field of view, but before the target, that the Obstacle will turn around at
     public float fl_RightOutOfView_Target; //The Right point outside the Camera's field of view the Obstacle aims for
     public float fl_RightOutOfView_Turnpoint; //The Right point outside the Camera's field of view, but before the target, that the Obstacle will turn around at
+
+    public JL_LevelManager SC_LevelManager;
 
     private bool bl_Action; //Controls which behaviour the Obstacle will take on update
     private bool bl_MoveDir; //Controls the direction the Obstacle moves in
@@ -104,9 +104,39 @@ public class DB_Obstacle_Movement : MonoBehaviour {
     // - Collision Behaviour
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == st_Boulder_Tag) //If the Obstacle is hit by a boulder, set the action boolean to true, making the Obstacle fall
+        if (col.transform.tag == "Boulder") //If the Obstacle is hit by a boulder, set the action boolean to true, making the Obstacle fall
         {
             bl_Action = true;
+
+             switch (gameObject.name)
+            {
+                case "Patroller":
+                    SC_LevelManager.ST_Powerup = "Triple Shot";
+                    break;
+                case "Drone":
+                    SC_LevelManager.ST_Powerup = "Big Shot";
+                    Invoke("SummonDrones", 0);
+                    break;
+                 case "SummonArmySupport":
+                    SC_LevelManager.ST_Powerup = "Bounce Shot";
+                    Invoke("SummonArmySupport", 0);
+                    break;
+                 case "FighterJet":
+                    SC_LevelManager.ST_Powerup = "Fast Fire";
+                    break;
+                 case "Bomber Plane":
+                    SC_LevelManager.ST_Powerup = "Explosive Shot";
+                    break;
+                 case "Zeppelin":
+                    SC_LevelManager.ST_Powerup = "Big Shot";
+                    break;
+                 case "Chinook":
+                    SC_LevelManager.ST_Powerup = "More Ammo";
+                    break;
+                default:
+                    break;
+            }
+            SC_LevelManager.BL_PoweredUP = true;
         }
 
     }//-----
