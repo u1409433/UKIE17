@@ -1,6 +1,10 @@
 sceneSetups:
 <<<<<<< HEAD
+<<<<<<< HEAD
 - path: Assets/James/Stone Masons.unity
+=======
+- path: Assets/Johannes/JohanneScene.unity
+>>>>>>> e7068b9e6339959bc4e24d029251f77338de7bab
 =======
 - path: Assets/Johannes/JohanneScene.unity
 >>>>>>> e7068b9e6339959bc4e24d029251f77338de7bab

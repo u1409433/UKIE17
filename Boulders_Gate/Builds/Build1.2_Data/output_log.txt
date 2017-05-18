@@ -8,6 +8,7 @@ Direct3D:
     Driver:   13.152.0.0
 Begin MonoManager ReloadAssembly
 <<<<<<< HEAD
+<<<<<<< HEAD
 Platform assembly: S:\1409433\UKIE17\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\UnityEngine.dll (this message is harmless)
 Loading S:\1409433\UKIE17\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\UnityEngine.dll into Unity Child Domain
 Platform assembly: S:\1409433\UKIE17\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
@@ -50,6 +51,28 @@ desktop: 1680x1050 60Hz; virtual: 3360x1050 at -1680,0
 <RI> Initialized touch support.
 UnloadTime: 1.035779 ms
 >>>>>>> e7068b9e6339959bc4e24d029251f77338de7bab
+=======
+Platform assembly: S:\u1534347\Game Jams\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading S:\u1534347\Game Jams\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: S:\u1534347\Game Jams\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading S:\u1534347\Game Jams\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: S:\u1534347\Game Jams\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading S:\u1534347\Game Jams\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: S:\u1534347\Game Jams\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading S:\u1534347\Game Jams\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: S:\u1534347\Game Jams\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading S:\u1534347\Game Jams\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: S:\u1534347\Game Jams\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading S:\u1534347\Game Jams\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+- Completed reload, in  0.105 seconds
+Platform assembly: S:\u1534347\Game Jams\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: S:\u1534347\Game Jams\UKIE17\Boulders_Gate\Builds\Build1.2_Data\Managed\System.dll (this message is harmless)
+desktop: 1680x1050 60Hz; virtual: 3360x1050 at -1680,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.035779 ms
+>>>>>>> e7068b9e6339959bc4e24d029251f77338de7bab
 NullReferenceException: Object reference not set to an instance of an object
   at JL_LevelManager.MoveCannon () [0x00000] in <filename unknown>:0 
   at JL_LevelManager.Update () [0x00000] in <filename unknown>:0 
@@ -58,8 +81,13 @@ NullReferenceException: Object reference not set to an instance of an object
 
 Setting up 2 worker threads for Enlighten.
 <<<<<<< HEAD
+<<<<<<< HEAD
   Thread -> id: c80 -> priority: 1 
   Thread -> id: 1b38 -> priority: 1 
+=======
+  Thread -> id: 1e90 -> priority: 1 
+  Thread -> id: 22a4 -> priority: 1 
+>>>>>>> e7068b9e6339959bc4e24d029251f77338de7bab
 =======
   Thread -> id: 1e90 -> priority: 1 
   Thread -> id: 22a4 -> priority: 1 
@@ -448,6 +476,7 @@ NullReferenceException: Object reference not set to an instance of an object
  
 (Filename:  Line: -1)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 NullReferenceException: Object reference not set to an instance of an object
   at JL_LevelManager.MoveCannon () [0x00000] in <filename unknown>:0 
@@ -841,6 +870,8 @@ NullReferenceException: Object reference not set to an instance of an object
 
 ConvexHullBuilder: convex hull has more than 255 polygons!
 =======
+=======
+>>>>>>> e7068b9e6339959bc4e24d029251f77338de7bab
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
 UnloadTime: 5.738270 ms
 
@@ -1174,10 +1205,13 @@ False
 False
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+<<<<<<< HEAD
 
 False
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+=======
+>>>>>>> e7068b9e6339959bc4e24d029251f77338de7bab
 
 False
  
@@ -32828,6 +32862,7 @@ False
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 False
+<<<<<<< HEAD
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -32976,6 +33011,12 @@ False
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 False
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+False
+=======
+>>>>>>> e7068b9e6339959bc4e24d029251f77338de7bab
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -33794,11 +33835,17 @@ False
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 False
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> e7068b9e6339959bc4e24d029251f77338de7bab
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 False
 <<<<<<< HEAD
+>>>>>>> e7068b9e6339959bc4e24d029251f77338de7bab
 =======
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
@@ -34212,7 +34259,16 @@ False
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 23.320578 ms
+
+Unloading 153 unused Assets to reduce memory usage. Loaded Objects now: 332.
+Total: 0.812258 ms (FindLiveObjects: 0.027084 ms CreateObjectMapping: 0.019672 ms MarkObjects: 0.177049 ms  DeleteObjects: 0.588167 ms)
+>>>>>>> e7068b9e6339959bc4e24d029251f77338de7bab
 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
 UnloadTime: 23.320578 ms
