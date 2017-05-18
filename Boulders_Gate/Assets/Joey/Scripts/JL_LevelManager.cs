@@ -5,9 +5,14 @@ using UnityEngine;
 public class JL_LevelManager : MonoBehaviour
 {
     public GameObject PF_Boulder;
+    public GameObject PF_Boulder_Predict;
 
     public GameObject GO_Cannon;
     public GameObject GO_Cam;
+    private float fl_FOV_start;
+    private float fl_FOV_current;
+    private float fl_Cam_lerp_progress;
+    private float fl_Cam_lerp_rate = 15;
 
     public float FL_YRot;
     public bool BL_Ypos = true;
@@ -22,6 +27,7 @@ public class JL_LevelManager : MonoBehaviour
     public bool BL_PowerPos;
 
     public float FL_FiringTime;
+    public float FL_FiringTime_Predict;
     public float FL_Cooldown;
     public float FL_ShotsLeft;
 
@@ -40,7 +46,7 @@ public class JL_LevelManager : MonoBehaviour
     void Start()
     {
         DI_Structures = new Dictionary<GameObject, int>();
-
+        fl_FOV_start = Camera.main.fieldOfView;
         foreach (GameObject Structure in GameObject.FindGameObjectsWithTag("Building"))
         {
             CountBricks(Structure);
@@ -51,6 +57,7 @@ public class JL_LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+            Fire_Predict();
         FL_MousePos = Input.mousePosition.y;
 
         InputCheck();
@@ -84,6 +91,7 @@ public class JL_LevelManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1) && Time.time >= FL_FiringTime && FL_ShotsLeft > 0)
         {
+            StartCoroutine(Camera_Shake());
             if (BL_PoweredUP)
             {
                 switch (ST_Powerup)
@@ -130,6 +138,31 @@ public class JL_LevelManager : MonoBehaviour
         Instantiate(PF_Boulder, GO_Cannon.transform.position + new Vector3(0, 2, 3), GO_Cannon.transform.FindChild("Barrel").transform.rotation);
     }
 
+    void Fire_Predict()
+    {
+        FL_FiringTime_Predict = Time.time + 1;
+        Instantiate(PF_Boulder_Predict, GO_Cannon.transform.position + new Vector3(0, 2, 3), GO_Cannon.transform.FindChild("Barrel").transform.rotation);
+    }
+
+    IEnumerator Camera_Shake()
+    {
+        fl_Cam_lerp_progress = 0;
+        fl_FOV_current = fl_FOV_start;
+        while ((fl_FOV_start * 1.1f) > fl_FOV_current)
+        {
+            fl_Cam_lerp_progress += Time.deltaTime * fl_Cam_lerp_rate;
+            fl_FOV_current = Camera.main.fieldOfView = Mathf.LerpUnclamped(fl_FOV_start, (fl_FOV_start * 1.1f), fl_Cam_lerp_progress);
+            yield return null;
+        }
+        fl_Cam_lerp_progress = 0;
+        while (fl_FOV_current > fl_FOV_start)
+        {
+            fl_Cam_lerp_progress += Time.deltaTime * fl_Cam_lerp_rate;
+            fl_FOV_current = Camera.main.fieldOfView = Mathf.Lerp((fl_FOV_start * 1.1f), fl_FOV_start, fl_Cam_lerp_progress);
+            yield return null;
+        }
+    }
+
     public void Blocksplosion(GameObject vHitBlock)
     {
         //For each block that exists
@@ -149,30 +182,30 @@ public class JL_LevelManager : MonoBehaviour
         if (BL_Ypos)
         {
             GO_Cannon.transform.Rotate(new Vector3(0, 0.25f, 0));
-            if (BL_CamRotation) GO_Cam.transform.Rotate(new Vector3(0, 0.1f, 0));
-            if (GO_Cannon.transform.rotation.eulerAngles.y > Ymax && GO_Cannon.transform.rotation.eulerAngles.y < Ymax + 5) BL_Ypos = false;
+            if (BL_CamRotation) GO_Cam.transform.Rotate(new Vector3(0, 0.25f, 0));
+            if (GO_Cannon.transform.rotation.eulerAngles.y > 35 && GO_Cannon.transform.rotation.eulerAngles.y < 40) BL_Ypos = false;
         }
         else
         {
             GO_Cannon.transform.Rotate(new Vector3(0, -0.25f, 0));
-            if (BL_CamRotation) GO_Cam.transform.Rotate(new Vector3(0, -0.1f, 0));
-            if (GO_Cannon.transform.rotation.eulerAngles.y > Ymin && GO_Cannon.transform.rotation.eulerAngles.y < Ymin + 5) BL_Ypos = true;
+            if (BL_CamRotation) GO_Cam.transform.Rotate(new Vector3(0, -0.25f, 0));
+            if (GO_Cannon.transform.rotation.eulerAngles.y > 320 && GO_Cannon.transform.rotation.eulerAngles.y < 325) BL_Ypos = true;
         }
 
         FL_YRot = GO_Cannon.transform.rotation.eulerAngles.y;
 
 
         FL_ZRot = Input.GetAxis("Mouse Y") * Time.deltaTime * 50;
-        GO_Cannon.transform.FindChild("Barrel").transform.Rotate(0, 0, -FL_ZRot);
+        GO_Cannon.transform.FindChild("Barrel").transform.Rotate(-FL_ZRot, 0, 0);
 
         if (GO_Cannon.transform.FindChild("Barrel").transform.localRotation.eulerAngles.y > 90)
         {
-            GO_Cannon.transform.FindChild("Barrel").transform.Rotate(0, 0, FL_ZRot);
+            GO_Cannon.transform.FindChild("Barrel").transform.Rotate(FL_ZRot, 0, 0);
         }
 
         if (GO_Cannon.transform.FindChild("Barrel").transform.localRotation.eulerAngles.x > 350 && GO_Cannon.transform.FindChild("Barrel").transform.localRotation.eulerAngles.x < 360)
         {
-            GO_Cannon.transform.FindChild("Barrel").transform.Rotate(0, 0, FL_ZRot);
+            GO_Cannon.transform.FindChild("Barrel").transform.Rotate(FL_ZRot, 0, 0);
         }
 
         FL_ZRot = GO_Cannon.transform.FindChild("Barrel").transform.rotation.eulerAngles.x;
