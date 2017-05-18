@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DB_Obstacle_Movement : MonoBehaviour {
+    //--------Instruction-..........-----------------------
+    //Find the points on the X axis a few units outside of the main camera's view to the left and right; enter these values in the Left and Right Out of View Targets.
+    //The Left and Right Out of View Turnpoints will be 1 unit before these points. fl_speed is obviously the speed at which the object moves. Initial time delay is the number
+    //of seconds until the object begins to move once the scene is loaded. Time till destroyed is the number of seconds after the object ragdolls until it is removed from
+    //the scene. Pattern length (as described below) is how many lengths of a scene the object will make before it pauses. The Pattern Delay Time is the number of seconds in
+    //this pause.
     //---------Variables-----------------------------------
 
     private Vector3 V3_Left_Target;
