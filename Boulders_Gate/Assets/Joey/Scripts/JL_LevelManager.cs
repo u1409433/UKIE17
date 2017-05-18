@@ -26,10 +26,21 @@ public class JL_LevelManager : MonoBehaviour
 
     public float FL_MousePos;
 
+    public int IN_BuildingsLeft;
+    public int IN_BlocksLeft;
+    public Dictionary<GameObject, int> DI_Structures;
+    
+
     // Use this for initialization
     void Start()
     {
+        DI_Structures = new Dictionary<GameObject, int>();
 
+        foreach (GameObject Structure in GameObject.FindGameObjectsWithTag("Building"))
+        {
+            CountBricks(Structure);
+            IN_BuildingsLeft++;
+        }
     }
 
     // Update is called once per frame
@@ -40,6 +51,26 @@ public class JL_LevelManager : MonoBehaviour
         InputCheck();
 
         MoveCannon();
+
+        IN_BlocksLeft = 0;
+
+        foreach (GameObject Structure in GameObject.FindGameObjectsWithTag("Building"))
+        {
+            if (Structure.GetComponent<JL_BuildingBehaviour>().IN_Bricks < Structure.GetComponent<JL_BuildingBehaviour>().IN_StartingBricks / 2)
+            {
+                IN_BuildingsLeft--;
+                Debug.Log("Building Destroyed");
+            }
+            else
+            {
+                IN_BlocksLeft += Structure.GetComponent<JL_BuildingBehaviour>().IN_Bricks;
+            }
+        }
+
+        if (IN_BuildingsLeft <= 0)
+        {
+            Application.LoadLevel(1);
+        }
     }
 
     private void InputCheck()
@@ -57,22 +88,27 @@ public class JL_LevelManager : MonoBehaviour
                         break;
                     case "Big Shot":
                         GameObject BigBall = (GameObject)Instantiate(PF_Boulder, GO_Cannon.transform.position + new Vector3(0, 2, 3), GO_Cannon.transform.FindChild("Barrel").transform.rotation);
-                        BigBall.transform.localScale = new Vector3(3,3,3);
+                        BigBall.transform.localScale = new Vector3(3, 3, 3);
                         BigBall.GetComponent<Rigidbody>().AddForce(transform.up * 500);
                         break;
                     default:
                         break;
                 }
 
-                FL_FiringTime += FL_Cooldown;
+                FL_FiringTime = Time.time + FL_Cooldown;
                 FL_ShotsLeft--;
                 BL_PoweredUP = false;
             }
             else
             {
                 Invoke("Fire", 0);
-                FL_FiringTime += FL_Cooldown;
+                FL_FiringTime = Time.time + FL_Cooldown;
                 FL_ShotsLeft--;
+
+                if (FL_ShotsLeft <= 0)
+                {
+                    Invoke("Loss", 10);
+                }
             }
 
         }
@@ -81,20 +117,6 @@ public class JL_LevelManager : MonoBehaviour
         {
             UpdatePower();
         }
-
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    Ray tRY_Ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //    RaycastHit tRH_Hit;
-
-        //    if (Physics.Raycast(tRY_Ray, out tRH_Hit, 100f))
-        //    {
-        //        if (tRH_Hit.transform.tag == "Block")
-        //        {
-        //            Blocksplosion(tRH_Hit.transform.gameObject);
-        //        }
-        //    }
-        //}
     }
 
     public void Fire()
@@ -160,5 +182,16 @@ public class JL_LevelManager : MonoBehaviour
             FL_Power -= Time.deltaTime * 3;
             if (FL_Power <= 1) BL_PowerPos = true;
         }
+    }
+
+    private void CountBricks(GameObject vStructure)
+    {
+        int tIN = vStructure.transform.childCount;
+        DI_Structures.Add(vStructure, tIN);
+    }
+
+    private void Loss()
+    {
+        Application.LoadLevel(2);
     }
 }

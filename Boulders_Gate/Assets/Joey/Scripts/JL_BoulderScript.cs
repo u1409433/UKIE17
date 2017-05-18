@@ -14,8 +14,8 @@ public class JL_BoulderScript : MonoBehaviour
 
         RB = gameObject.GetComponent<Rigidbody>();
 
-        RB.AddForce(transform.up * 500 * SC_LevelManager.FL_Power);
-        //RB.AddForce(transform.up * 300);
+        RB.AddForce(transform.up * 600 * SC_LevelManager.FL_Power);
+        RB.AddForce(-transform.forward * 75 * SC_LevelManager.FL_Power);
     }
 
     // Update is called once per frame

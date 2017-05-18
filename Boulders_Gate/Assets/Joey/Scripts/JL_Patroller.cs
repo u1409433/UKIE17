@@ -46,6 +46,11 @@ public class JL_Patroller : MonoBehaviour
             SC_LevelManager.BL_PoweredUP = true;
             Destroy(gameObject);
         }
+
+        if (vCollision.transform.tag == "Block")
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void SummonDrones()
