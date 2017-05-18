@@ -31,4 +31,9 @@ public class JL_UIManager : MonoBehaviour
         int BricksLeft = IN_BrickstoDestroy * 2 - SC_LevelManager.IN_BlocksLeft;
         UI_BricksLeft.text = BricksLeft.ToString();
     }
+
+    public void ExitButton()
+    {
+        Application.LoadLevel(0);
+    }
 }

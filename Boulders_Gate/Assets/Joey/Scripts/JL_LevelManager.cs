@@ -7,6 +7,7 @@ public class JL_LevelManager : MonoBehaviour
     public GameObject PF_Boulder;
 
     public GameObject GO_Cannon;
+    public GameObject GO_Cam;
 
     public float FL_YRot;
     public bool BL_Ypos = true;
@@ -29,7 +30,8 @@ public class JL_LevelManager : MonoBehaviour
     public int IN_BuildingsLeft;
     public int IN_BlocksLeft;
     public Dictionary<GameObject, int> DI_Structures;
-    
+
+    static public bool BL_CamRotation = false;
 
     // Use this for initialization
     void Start()
@@ -54,6 +56,8 @@ public class JL_LevelManager : MonoBehaviour
 
         IN_BlocksLeft = 0;
 
+        Debug.Log(BL_CamRotation.ToString());
+
         foreach (GameObject Structure in GameObject.FindGameObjectsWithTag("Building"))
         {
             if (Structure.GetComponent<JL_BuildingBehaviour>().IN_Bricks < Structure.GetComponent<JL_BuildingBehaviour>().IN_StartingBricks / 2)
@@ -69,7 +73,7 @@ public class JL_LevelManager : MonoBehaviour
 
         if (IN_BuildingsLeft <= 0)
         {
-            Application.LoadLevel(1);
+            Application.LoadLevel(2);
         }
     }
 
@@ -142,12 +146,14 @@ public class JL_LevelManager : MonoBehaviour
     {
         if (BL_Ypos)
         {
-            GO_Cannon.transform.Rotate(new Vector3(0, 0.5f, 0));
+            GO_Cannon.transform.Rotate(new Vector3(0, 0.25f, 0));
+            if (BL_CamRotation) GO_Cam.transform.Rotate(new Vector3(0, 0.25f, 0));
             if (GO_Cannon.transform.rotation.eulerAngles.y > 35 && GO_Cannon.transform.rotation.eulerAngles.y < 40) BL_Ypos = false;
         }
         else
         {
-            GO_Cannon.transform.Rotate(new Vector3(0, -0.5f, 0));
+            GO_Cannon.transform.Rotate(new Vector3(0, -0.25f, 0));
+            if (BL_CamRotation) GO_Cam.transform.Rotate(new Vector3(0, -0.25f, 0));
             if (GO_Cannon.transform.rotation.eulerAngles.y > 320 && GO_Cannon.transform.rotation.eulerAngles.y < 325) BL_Ypos = true;
         }
 
@@ -168,6 +174,8 @@ public class JL_LevelManager : MonoBehaviour
         }
 
         FL_ZRot = GO_Cannon.transform.FindChild("Barrel").transform.rotation.eulerAngles.x;
+
+        
     }
 
     private void UpdatePower()
@@ -192,6 +200,16 @@ public class JL_LevelManager : MonoBehaviour
 
     private void Loss()
     {
-        Application.LoadLevel(2);
+        Application.LoadLevel(3);
+    }
+
+    public void SwitchCamRot()
+    {
+        BL_CamRotation = (BL_CamRotation) ? false : true;
+    }
+
+    public string GetRot()
+    {
+        return BL_CamRotation.ToString();
     }
 }
